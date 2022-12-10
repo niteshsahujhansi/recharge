@@ -1,0 +1,18 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Chackout</h3>
+   <hr>
+   <div class="text-block" >
+    <div style="font-weight: bolder;text-align: center;"><h1 class="display-1">Successfull!!</h1></div>
+    <div style="text-align: center;">{{ msg }}</div> <br>
+    <div style="text-align: center;"><a href="/"><button class="button">Go to Homepage</button></a></div>
+</div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

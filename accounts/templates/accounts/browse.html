@@ -1,0 +1,88 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <!-- <h3>Internet Packs</h3> -->
+   <hr>
+   <div class="text-block" >
+    {% if db  == "Combo" %}       
+    <h3>{{result.name}}</h3>     
+            <div style="padding-left: 4cm;font-size: larger;padding-top: 1.5cm;">
+                Available Data : {{ result.net }}
+            </div>
+            <div style="padding-left: 4cm;font-size: larger;">    
+                Available Talktime : {{ result.talk }}
+            </div>    
+            <div style="padding-left: 4cm;font-size: larger;">    
+            Validity : {{ result.vald }} days
+            </div>
+            <div style="padding-left: 4cm;font-size: larger;"">    
+            Price : Rs.{{ result.price }} 
+            </div>
+            <div style="padding-left: 4cm;font-size: larger;"">    
+                More info  ---   {{ result.text }} 
+            </div>
+            <div style="text-align: center;padding-top: 5cm;"><form method='POST' action="/checkout">
+                {% csrf_token %}
+                <input type="hidden" name="pack_id" value="{{result.pk}}">
+                <input type="hidden" name="db_name" value="Combo">
+                <button type="submit" class="button"><span>Proceed to payment</span></button>
+            </form>
+            </div>
+{% endif %}
+
+{% if db  == "Internet" %}
+<h3>{{result.name}}</h3>
+
+            <div style="padding-left: 4cm;font-size: larger;padding-top: 1.5cm;">
+                Available Data : {{ result.net }}
+            </div><br>
+            <div style="padding-left: 4cm;font-size: larger;">    
+            Validity : {{ result.vald }} days
+            </div><br>
+            <div style="padding-left: 4cm;font-size: larger;"">    
+            Price : Rs.{{ result.price }} 
+            </div><br>
+            <div style="padding-left: 4cm;font-size: larger;"">    
+                More info  ---   {{ result.text }} 
+            </div>
+            <div style="text-align: center;padding-top: 1cm;"><form method='POST' action="/checkout/">
+                {% csrf_token %}
+                <input type="hidden" name="pack_id" value="{{result.pk}}">
+                <input type="hidden" name="db_name" value="Internet">
+                <button type="submit" class="button"><span>Proceed to payment</span></button>
+            </form>
+            </div>
+{% endif %}
+
+{% if db  == "Talktime" %}
+<h3>{{result.name}}</h3>
+            <div style="padding-left: 4cm;font-size: larger;">    
+                Available Talktime : {{ result.talk }}
+            </div>    
+            <div style="padding-left: 4cm;font-size: larger;">    
+            Validity : {{ result.vald }} days
+            </div>
+            <div style="padding-left: 4cm;font-size: larger;"">    
+            Price : Rs.{{ result.price }} 
+            </div>
+            <div style="padding-left: 4cm;font-size: larger;"">    
+                More info  ---   {{ result.text }} 
+            </div>
+            <div style="text-align: center; padding-top: 5cm;"><form method='POST' action="/checkout/">
+                {% csrf_token %}
+                <input type="hidden" name="pack_id" value="{{result.pk}}">
+                <input type="hidden" name="db_name" value="Talktime">
+                <button type="submit" class="button"><span>Proceed to payment</span></button>
+            </form>
+            </div>
+{% endif %}
+
+  </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

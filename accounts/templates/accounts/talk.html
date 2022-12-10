@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Internet Packs</h3>
+   <hr>
+   <div class="text-block" >
+    {% for items in talk %}
+           <!-- <li> -->
+            <form method='POST' action="/browse/">
+            {% csrf_token %}
+            {{ items }}- Rs.{{ items.price }} 
+            <input type="hidden" name="pack_id" value="{{items.pk}}">
+            <input type="hidden" name="db_name" value="Talktime">
+            <button type="submit" class="button"><span>View pack</span></button>
+          </form> <br>
+        <!-- </li> -->
+         {% empty %}
+         {% endfor %}
+  </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
